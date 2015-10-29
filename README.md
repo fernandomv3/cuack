@@ -22,7 +22,7 @@ Now you can just run it like
 ~$ cuack.py
 ```
 ## How it works
-The script is simple, it reads paramaters from a JSON file(pages.json) and generate the assets according to them using the [Jinja2](https://github.com/mitsuhiko/jinja2)Jinja2 template engine, so go on and read Jinja's documentation to start generating you templates.
+The script is simple, it reads paramaters from a JSON file(pages.json) and generate the assets according to them using the [Jinja2](https://github.com/mitsuhiko/jinja2) template engine, so go on and read Jinja's documentation to start generating you templates.
 
 ## Structure of the pages.json
 Let's start with a very small example
@@ -32,11 +32,11 @@ Let's start with a very small example
   "output_dir" :"myawesomewebsite/static/",
   "template_dir" : "templates",
   "pages" :[
-      {
-        "name": "second_page.html",
-        "template": "base.html",
-        "values": {}
-      }
+    {
+      "name": "second_page.html",
+      "template": "base.html",
+      "values": {}
+    }
   ]
 }
 ```
@@ -44,7 +44,43 @@ The file pages.json can be very simple or very complicated depending on what are
 
 Basically, you must indicate where your templates are located, this is the "template_dir" value. The "output_dir" value is self explanatory, your generated pages will be put in that directory.(Be careful if you use the same directory as your templates you may overwrite them!).
 
-The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. Finally, you can specify arbitrary JSON and use it on you templates via "values".
+The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. You can also specify arbitrary JSON and use it on you templates via "values".
+
+###Importing data from a CSV file
+
+You can also load data from a comma-separated values file in order to avoid hardcoding the data into the pages.json file.
+
+To do this you must specify some parameters in the pages.json file
+
+```JSON
+{
+  "output_dir" :"myawesomewebsite/static/",
+  "template_dir" : "templates",
+  "pages" :[
+    {
+      "name": "second_page.html",
+      "template": "base.html",
+      "values": {}
+      "csv":[
+        {
+          "file_name": "data.csv",
+          "var_name": "table1",
+          "csv_params":{}
+        }
+      ]
+    }
+  ]
+}
+```
+
+You can add multiple csv files by appending them to the csv parameter of the page.
+* The filename attribute is the path to the csv file relative to the cuack.py script. 
+* The var_name attribute is the name of the variable in the template used to to reference the data.
+* The csv_params is a dictionary containing settings for loading the csv file. For more info on what parameters are available and how to use them, be sure to check the python documentation on the module csv [here](https://docs.python.org/3/library/csv.html).
+
+After modifying the pages.json file, you can use the variable specified in var_name in your template. This variable contains 2 attributes:
+* fieldnames : A list of the fieldnames in the same order as the csv file
+* data: A list of dictionaries(rows), each entry in the dictionary is {fieldname: value}. The rows are in order but the dictionaries are not!.
 
 ##Additional options
 In case you need or just want to specify a different pages.json file, you could use the --file parameter
