@@ -50,7 +50,7 @@ The "pages" value is a list that indicates the "name" of the generated page and 
 
 You can also load data from a comma-separated values file in order to avoid hardcoding the data into the pages.json file.
 
-To do this you must specify some parameters in the pages.json file
+To do this you must specify some parameters:
 
 ```JSON
 {
@@ -76,7 +76,7 @@ To do this you must specify some parameters in the pages.json file
 You can add multiple csv files by appending them to the csv parameter of the page.
 * The filename attribute is the path to the csv file relative to the cuack.py script. 
 * The var_name attribute is the name of the variable in the template used to to reference the data.
-* The csv_params is a dictionary containing settings for loading the csv file. For more info on what parameters are available and how to use them, be sure to check the python documentation on the module csv [here](https://docs.python.org/3/library/csv.html).
+* The csv_params is a dictionary containing settings for loading the csv file. For more info on what parameters are available and how to use them, be sure to check the Python documentation of the csv module [here](https://docs.python.org/3/library/csv.html).
 
 After modifying the pages.json file, you can use the variable specified in var_name in your template. This variable contains 2 attributes:
 * fieldnames : A list of the fieldnames in the same order as the csv file
