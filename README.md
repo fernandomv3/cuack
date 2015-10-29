@@ -60,7 +60,7 @@ To do this you must specify some parameters in the pages.json file
     {
       "name": "second_page.html",
       "template": "base.html",
-      "values": {}
+      "values": {},
       "csv":[
         {
           "file_name": "data.csv",
