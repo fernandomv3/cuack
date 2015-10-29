@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cuack by fernandomv3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Cuack</h1>
+      <h2 class="project-tagline">Static multi-purpouse template renderer in Python</h2>
+      <a href="https://github.com/fernandomv3/cuack" class="btn">View on GitHub</a>
+      <a href="https://github.com/fernandomv3/cuack/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/fernandomv3/cuack/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="cuack" class="anchor" href="#cuack" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cuack</h1>
+
+<p>Static multi-purpouse template renderer made in python :)</p>
+
+<h2>
+<a id="what-is-cuack" class="anchor" href="#what-is-cuack" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Cuack?</h2>
+
+<p>I made cuack because I found myself in many situations where I need to generate lots of similar static assests (reports, tables, html, etc.) and end up using other tools or setting up single use environments to achieve my goal. So to accelerate my work I made a somewhat general setup to generate this assets by using templates.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Python3 (probable Python2 support)</li>
+<li>Jinja2 Python package</li>
+</ul>
+
+<h2>
+<a id="how-to-install-it" class="anchor" href="#how-to-install-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install it</h2>
+
+<p>Asuming you have Python3 and Jinja2 installed, fork this repo or download it as a zip and unzip it in some folder of your machine and start using it.</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">~</span>$ python cuack.py</pre></div>
+
+<p>If you have a unix-like enviromnent you could make the script executable</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">~</span>$ chmod a+x cuack.py</pre></div>
+
+<p>Now you can just run it like</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">~</span>$ cuack.py</pre></div>
+
+<h2>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How it works</h2>
+
+<p>The script is simple, it reads paramaters from a JSON file(pages.json) and generate the assets according to them using the <a href="https://github.com/mitsuhiko/jinja2">Jinja2</a> template engine, so go on and read Jinja's documentation to start generating you templates.</p>
+
+<h2>
+<a id="structure-of-the-pagesjson" class="anchor" href="#structure-of-the-pagesjson" aria-hidden="true"><span class="octicon octicon-link"></span></a>Structure of the pages.json</h2>
+
+<p>Let's start with a very small example</p>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>output_dir<span class="pl-pds">"</span></span> :<span class="pl-s"><span class="pl-pds">"</span>myawesomewebsite/static/<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>template_dir<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>templates<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>pages<span class="pl-pds">"</span></span> :[
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>second_page.html<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>template<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>base.html<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>values<span class="pl-pds">"</span></span>: {}
+    }
+  ]
+}</pre></div>
+
+<p>The file pages.json can be very simple or very complicated depending on what are you planning to do. </p>
+
+<p>Basically, you must indicate where your templates are located, this is the "template_dir" value. The "output_dir" value is self explanatory, your generated pages will be put in that directory.(Be careful if you use the same directory as your templates you may overwrite them!).</p>
+
+<p>The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. You can also specify arbitrary JSON and use it on you templates via "values".</p>
+
+<h3>
+<a id="importing-data-from-a-csv-file" class="anchor" href="#importing-data-from-a-csv-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing data from a CSV file</h3>
+
+<p>You can also load data from a comma-separated values file in order to avoid hardcoding the data into the pages.json file.</p>
+
+<p>To do this you must specify some parameters:</p>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>output_dir<span class="pl-pds">"</span></span> :<span class="pl-s"><span class="pl-pds">"</span>myawesomewebsite/static/<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>template_dir<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>templates<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>pages<span class="pl-pds">"</span></span> :[
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>second_page.html<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>template<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>base.html<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>values<span class="pl-pds">"</span></span>: {},
+      <span class="pl-s"><span class="pl-pds">"</span>csv<span class="pl-pds">"</span></span>:[
+        {
+          <span class="pl-s"><span class="pl-pds">"</span>file_name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>data.csv<span class="pl-pds">"</span></span>,
+          <span class="pl-s"><span class="pl-pds">"</span>var_name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>table1<span class="pl-pds">"</span></span>,
+          <span class="pl-s"><span class="pl-pds">"</span>csv_params<span class="pl-pds">"</span></span>:{}
+        }
+      ]
+    }
+  ]
+}</pre></div>
+
+<p>You can add multiple csv files by appending them to the csv parameter of the page.</p>
+
+<ul>
+<li>The filename attribute is the path to the csv file relative to the cuack.py script. </li>
+<li>The var_name attribute is the name of the variable in the template used to to reference the data.</li>
+<li>The csv_params is a dictionary containing settings for loading the csv file. For more info on what parameters are available and how to use them, be sure to check the Python documentation of the csv module <a href="https://docs.python.org/3/library/csv.html">here</a>.</li>
+</ul>
+
+<p>After modifying the pages.json file, you can use the variable specified in var_name in your template. This variable contains 2 attributes:</p>
+
+<ul>
+<li>fieldnames : A list of the fieldnames in the same order as the csv file</li>
+<li>data: A list of dictionaries(rows), each entry in the dictionary is {fieldname: value}. The rows are in order but the dictionaries are not!.</li>
+</ul>
+
+<h2>
+<a id="additional-options" class="anchor" href="#additional-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Additional options</h2>
+
+<p>In case you need or just want to specify a different pages.json file, you could use the --file parameter</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">~</span>$ cuack.py --file=myotherpagesfile.json</pre></div>
+
+<p>Also, there is a --dev parameter just to save you the hassle of creating a "dev:true" value in every page entry of the pages.json file. You can use the dev variable anywhere in your template, not using the --dev option sets it to False.</p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>If you want to add improvements, fix bugs, add features, document or anything you think will benefit cuack, first fork it for you to work there. After finishing what you have done you can submit a pull-request to the original repository. Please be very descriptive on what your changes are so I can review it quickier.</p>
+
+<h2>
+<a id="report-bugs-and-issues" class="anchor" href="#report-bugs-and-issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Report bugs and issues</h2>
+
+<p>Just file an issue here on this repo and I'll take a look at it as soon as I can.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/fernandomv3/cuack">Cuack</a> is maintained by <a href="https://github.com/fernandomv3">fernandomv3</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
