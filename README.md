@@ -46,6 +46,8 @@ Basically, you must indicate where your templates are located, this is the "temp
 
 The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. You can also specify arbitrary JSON and use it on you templates via "values".
 
+For particular cases like when you need to build an index for a webpage, it can be helpful to have a list of the pages straight out of the pages.json file. You can access it in the `meta` variable from any template file.
+
 ###Importing data from a CSV file
 
 You can also load data from a comma-separated values file in order to avoid hardcoding the data into the pages.json file.
@@ -87,6 +89,7 @@ In case you need or just want to specify a different pages.json file, you could 
 ```bash
 ~$ cuack.py --file=myotherpagesfile.json
 ```
+
 Also, there is a --dev parameter just to save you the hassle of creating a "dev:true" value in every page entry of the pages.json file. You can use the dev variable anywhere in your template, not using the --dev option sets it to False.
 
 ##Contributing
