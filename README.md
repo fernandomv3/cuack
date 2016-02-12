@@ -46,7 +46,29 @@ Basically, you must indicate where your templates are located, this is the "temp
 
 The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. You can also specify arbitrary JSON and use it on you templates via "values".
 
-For particular cases like when you need to build an index for a webpage, it can be helpful to have a list of the pages straight out of the pages.json file. You can access it in the `meta` variable from any template file.
+There's also another useful feature, when you need to have data available to all templates, instead of adding it on the attribute "values" of each page, you can add an attribute to the main pages.json structure called "global_vars".
+
+```JSON
+{
+  "output_dir" :"myawesomewebsite/static/",
+  "template_dir" : "templates",
+  "global_vars" :
+  {
+    "foo" :"bar",
+    "name" : "Joseph"
+  },
+  "pages" :[
+    {
+      "name": "second_page.html",
+      "template": "base.html",
+      "values": {}
+    }
+  ]
+}
+```
+This attribute is optional and can contain any type of JSON data.
+
+For particular cases like when you need to build an index for a webpage, it can be helpful to have a list of the pages straight out of the pages.json file. You can access it in the `meta` variable from any template file. It has the same structure as the pages.json file.
 
 ###Importing data from a CSV file
 
