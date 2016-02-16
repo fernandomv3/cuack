@@ -35,7 +35,6 @@ Let's start with a very small example
     {
       "name": "second_page.html",
       "template": "base.html",
-      "values": {}
     }
   ]
 }
@@ -44,7 +43,7 @@ The file pages.json can be very simple or very complicated depending on what are
 
 Basically, you must indicate where your templates are located, this is the "template_dir" value. The "output_dir" value is self explanatory, your generated pages will be put in that directory.(Be careful if you use the same directory as your templates you may overwrite them!).
 
-The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. You can also specify arbitrary JSON and use it on you templates via "values".
+The "pages" value is a list that indicates the "name" of the generated page and which "template" it uses to do it. "name" and "template" are mandatory attributes for each page. You can also specify arbitrary JSON attributes in each and use it on you templates via "current_page".
 
 There's also another useful feature, when you need to have data available to all templates, instead of adding it on the attribute "values" of each page, you can add an attribute to the main pages.json structure called "global_vars".
 
@@ -61,7 +60,7 @@ There's also another useful feature, when you need to have data available to all
     {
       "name": "second_page.html",
       "template": "base.html",
-      "values": {}
+      "foo": "bar"
     }
   ]
 }
@@ -84,7 +83,6 @@ To do this you must specify some parameters:
     {
       "name": "second_page.html",
       "template": "base.html",
-      "values": {},
       "csv":[
         {
           "file_name": "data.csv",
