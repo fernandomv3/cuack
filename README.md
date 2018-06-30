@@ -69,7 +69,7 @@ This attribute is optional and can contain any type of JSON data.
 
 For particular cases like when you need to build an index for a webpage, it can be helpful to have a list of the pages straight out of the pages.json file. You can access it in the `meta` variable from any template file. It has the same structure as the pages.json file.
 
-###Importing data from a CSV file
+### Importing data from a CSV file
 
 You can also load data from a comma-separated values file in order to avoid hardcoding the data into the pages.json file.
 
@@ -104,7 +104,7 @@ After modifying the pages.json file, you can use the variable specified in var_n
 * fieldnames : A list of the fieldnames in the same order as the csv file
 * data: A list of dictionaries(rows), each entry in the dictionary is {fieldname: value}. The rows are in order but the dictionaries are not!.
 
-##Additional options
+## Additional options
 In case you need or just want to specify a different pages.json file, you could use the --file parameter
 ```bash
 ~$ cuack.py --file=myotherpagesfile.json
@@ -112,8 +112,8 @@ In case you need or just want to specify a different pages.json file, you could 
 
 Also, there is a --dev parameter just to save you the hassle of creating a "dev:true" value in every page entry of the pages.json file. You can use the dev variable anywhere in your template, not using the --dev option sets it to False.
 
-##Contributing
+## Contributing
 If you want to add improvements, fix bugs, add features, document or anything you think will benefit cuack, first fork it for you to work there. After finishing what you have done you can submit a pull-request to the original repository. Please be very descriptive on what your changes are so I can review it quickier.
 
-##Report bugs and issues
+## Report bugs and issues
 Just file an issue here on this repo and I'll take a look at it as soon as I can.
